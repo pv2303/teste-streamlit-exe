@@ -1,0 +1,44 @@
+{
+  "name": "xxx",
+  "version": "0.1.0",
+  "main": "./build/electron/main.js",
+  "scripts": {
+    "dump": "dump-stlite-desktop-artifacts",
+    "serve": "cross-env NODE_ENV=production electron .",
+    "servewindows": "electron .",
+    "app:dir": "electron-builder --dir",
+    "app:dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "streamlit.ex",
+    "files": ["build/**/*"],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "portable"
+    }
+  },
+  "devDependencies": {
+    "@stlite/desktop": "^0.79.5",
+    "cross-env": "^7.0.3",
+    "electron": "34.3.0",
+    "electron-builder": "^25.1.8"
+  },
+  "stlite": {
+    "desktop": {
+      "files": [
+        "app/**/*",
+        "data/**/*"
+    ],
+      "entrypoint": "app/app.py",
+      "requirementsTxtFiles": [
+        "app/requirements.txt"
+      ]
+    },
+    "dependencies": [
+      "openpyxl"
+    ]
+  }
+}
